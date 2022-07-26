@@ -29,15 +29,15 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${expenses}" var="expense">
-					<tr >
-						
-						<td ><a href='/expenses/<c:out value="${expense.getId()}"/>' ><c:out value="${expense.getName()}"/></a></td>
+					<tr>	
+						<td ><a href='<c:url value="/expenses/${expense.getId()}"/>' ><c:out value="${expense.getName()}"/></a></td>
 						<td ><c:out value="${expense.getVendor()}"/></td>
 						<td >$<c:out value="${expense.getAmount()}"/></td>
 						<td >
 							<div class="row">
-								<a href='/expenses/<c:out value="${expense.getId()}"/>/edit' class="btn btn-light">Edit</a> 
-								| <form action='/expenses/<c:out value="${expense.getId()}"/>/delete'>
+								<a href= '<c:url value="/expenses/${expense.getId()}/edit"/>' class="btn btn-light">Edit</a><span class="p-1">|</span>  
+								<form action='/expenses/<c:out value="${expense.getId()}"/>/delete' method="post">
+									<input type="hidden" name="_method" value="delete">
 									<input type="submit" class="btn btn-light" value="Delete">
 								</form>
 							</div>

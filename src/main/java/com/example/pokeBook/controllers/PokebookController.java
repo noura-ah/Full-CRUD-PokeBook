@@ -74,7 +74,7 @@ public class PokebookController {
         }
     }
 	
-    @RequestMapping("{id}/delete")
+    @RequestMapping(value="{id}/delete", method=RequestMethod.DELETE)
     public String destroy(@PathVariable(value="id") Long id,RedirectAttributes redirectAttributes) {
     	pokeBookServices.deleteExpense(id);
 		redirectAttributes.addFlashAttribute("success", "Expense was deleted successfully");
