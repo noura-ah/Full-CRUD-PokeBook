@@ -23,12 +23,8 @@ public class PokeBookServices {
     }
 	public Expense findExpense(Long id) {
 	        Optional<Expense> optionalpokeBook = pokebookRepository.findById(id);
-	        if(optionalpokeBook.isPresent()) {
-	            return optionalpokeBook.get();
-	        } else {
-	            return null;
-	        }
-	    }
+	        return optionalpokeBook.isPresent()?  optionalpokeBook.get() : null;
+	}
 	
 	public Expense updateExpense(Expense expense) {
     	return pokebookRepository.save(expense);

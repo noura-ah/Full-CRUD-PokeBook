@@ -37,6 +37,7 @@ public class PokebookController {
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public String create(Model model, @Valid @ModelAttribute("expense") Expense expense, BindingResult result, RedirectAttributes redirectAttributes ) {
 		if (result.hasErrors()) {
+			//return index(model, expense);
 			List<Expense> expenses = pokeBookServices.allExpenses();
 	        model.addAttribute("expenses", expenses);
             return "/index.jsp";
