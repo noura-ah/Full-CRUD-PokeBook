@@ -39,12 +39,11 @@ public class PokebookController {
 		if (result.hasErrors()) {
 			//return index(model, expense);
 			List<Expense> expenses = pokeBookServices.allExpenses();
-	        model.addAttribute("expenses", expenses);
-            return "/index.jsp";
+			model.addAttribute("expenses", expenses);
+			return "/index.jsp";
         } else {
         	pokeBookServices.createBook(expense);
     		redirectAttributes.addFlashAttribute("success", "Expense was created successfully");
-
             return "redirect:/expenses";
         }
 	}
@@ -59,8 +58,7 @@ public class PokebookController {
 	@RequestMapping("/{id}/edit")
     public String edit(@PathVariable("id") Long id, Model model) {
 		Expense expense = pokeBookServices.findExpense(id);
-        model.addAttribute("expense", expense);
-		
+		model.addAttribute("expense", expense);
         return "/edit.jsp";
     }
     
@@ -79,7 +77,6 @@ public class PokebookController {
     public String destroy(@PathVariable(value="id") Long id,RedirectAttributes redirectAttributes) {
     	pokeBookServices.deleteExpense(id);
 		redirectAttributes.addFlashAttribute("success", "Expense was deleted successfully");
-
     	return "redirect:/expenses";
     }
 	
