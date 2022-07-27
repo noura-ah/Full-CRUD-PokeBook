@@ -15,24 +15,26 @@ public class PokeBookServices {
 	public PokeBookServices(PokeBookRepository pokebookRepository) {
 		this.pokebookRepository = pokebookRepository;
 	}
+	
 	public List<Expense> allExpenses() {
-        return pokebookRepository.findAll();
-    }
+        	return pokebookRepository.findAll();
+    	}
+	
 	public Expense createBook(Expense b) {
-        return pokebookRepository.save(b);
-    }
+		return pokebookRepository.save(b);
+	    }
+	
 	public Expense findExpense(Long id) {
 	        Optional<Expense> optionalpokeBook = pokebookRepository.findById(id);
 	        return optionalpokeBook.isPresent()?  optionalpokeBook.get() : null;
 	}
 	
 	public Expense updateExpense(Expense expense) {
-    	return pokebookRepository.save(expense);
-    }
+		return pokebookRepository.save(expense);
+	    }
 	
 	public void deleteExpense(Long id) {
 		pokebookRepository.deleteById(id);
     }
     
 }
-
