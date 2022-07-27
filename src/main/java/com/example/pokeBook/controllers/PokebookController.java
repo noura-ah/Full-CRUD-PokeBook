@@ -55,7 +55,7 @@ public class PokebookController {
 	@RequestMapping("/{id}")
 	public String show(@PathVariable(value="id") Long id, Model model) {
 		Expense expense = pokeBookServices.findExpense(id);
-        model.addAttribute("expense", expense);
+        	model.addAttribute("expense", expense);
 		return "/show_expense.jsp";
 	}
 	

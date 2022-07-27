@@ -19,11 +19,17 @@ public class PokeBookServices {
 	public List<Expense> allExpenses() {
         	return pokebookRepository.findAll();
     	}
+<<<<<<< HEAD
 	
 	public Expense createBook(Expense b) {
 		return pokebookRepository.save(b);
 	    }
 	
+=======
+	public Expense createBook(Expense b) {
+		return pokebookRepository.save(b);
+	    }
+>>>>>>> a3f97bb4b6c716f6ba81609e7c1dc63573381ed1
 	public Expense findExpense(Long id) {
 	        Optional<Expense> optionalpokeBook = pokebookRepository.findById(id);
 	        return optionalpokeBook.isPresent()?  optionalpokeBook.get() : null;
