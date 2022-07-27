@@ -55,15 +55,17 @@ public class PokebookController {
 	@RequestMapping("/{id}")
 	public String show(@PathVariable(value="id") Long id, Model model) {
 		Expense expense = pokeBookServices.findExpense(id);
-        	model.addAttribute("expense", expense);
+        model.addAttribute("expense", expense);
 		return "/show_expense.jsp";
 	}
 	
 	// show the edit form page 
 	@RequestMapping("/{id}/edit")
    	public String edit(@PathVariable("id") Long id, Model model) {
-		Expense expense = pokeBookServices.findExpense(id);
-		model.addAttribute("expense", expense);
+		if (!model.containsAttribute("expense")) {
+			Expense expense = pokeBookServices.findExpense(id);
+			model.addAttribute("expense", expense);
+		}
         return "/edit.jsp";
     	}
     
@@ -71,13 +73,15 @@ public class PokebookController {
 	@PutMapping(value="/{id}")
 	public String update(@Valid @ModelAttribute("expense") Expense expense, BindingResult result, RedirectAttributes redirectAttributes) {
 		if (result.hasErrors()) {
-		    return "/edit.jsp";
+			redirectAttributes.addFlashAttribute("expense",expense);
+			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.expense",result);
+		    return "redirect:./"+expense.getId()+"/edit";
 		}
 		pokeBookServices.updateExpense(expense);
 		redirectAttributes.addFlashAttribute("success", "Expense was edited successfully");
 		return "redirect:./";
-		
-	    }
+		}
+	    
 	
 	@DeleteMapping(value="{id}/delete")
 	public String destroy(@PathVariable(value="id") Long id,RedirectAttributes redirectAttributes) {

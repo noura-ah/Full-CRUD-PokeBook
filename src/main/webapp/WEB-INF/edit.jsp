@@ -39,9 +39,13 @@
 				<form:textarea path="description" class="form-control" cssErrorClass="form-control is-invalid" />
 				<form:errors path="description" cssClass="invalid-feedback"/>
 			</div>
-			
-			<input type="submit" value="Submit" class="btn btn-dark">
+			<div class="d-flex align-items-center justify-content-between">
+				<input type="submit" value="Submit" class="btn btn-dark">
+				<a class="btn btn-dark" href="/expenses">Cancel</a>
+			</div>
 		</form:form>
+					
+		
 		</div>
 		
 	</div>
